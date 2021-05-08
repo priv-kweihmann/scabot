@@ -1,0 +1,32 @@
+{
+    "projects": {
+        "1": {
+            "requests": {
+                "3": {
+                    "notes": [
+                        {
+                            "path": "fr_errors.po",
+                            "user": "foo",
+                            "body": "[Package:bad-po Tool:msgcheck] number of lines: 2 in string, 3 in translation",
+                            "line_number": 45,
+                            "old_linenumber": 43
+                        },
+                        {
+                            "path": "fr_errors.po",
+                            "user": "foo",
+                            "body": "[Package:bad-po Tool:msgcheck] this message is not present anymore",
+                            "line_number": 100000
+                        }
+                    ],
+                    "diffs": [
+                        {
+                            "file": "fr_errors.po",
+                            "diff": "@@ -42,7 +42,7 @@ SCA_AVAILABLE_MODULES ?= \"\\\n                           reconbf \\\n                           retire \\\n                           reuse \\\n-                          foo \\\n+                          bar \\\n                           safety \\\n                           semgrep \\\n                           setuptoolslint \\",
+                            "newfile": false
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

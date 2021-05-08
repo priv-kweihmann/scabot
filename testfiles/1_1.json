@@ -1,0 +1,34 @@
+{
+    "projects": {
+        "1": {
+            "requests": {
+                "1": {
+                    "notes": [
+                        {
+                            "path": "foo/bar/fiz.c",
+                            "user": "foo",
+                            "body": "Test comment",
+                            "line_number": 10,
+                            "old_linenumber": 8,
+                            "resolved": true
+                        },
+                        {
+                            "path": "foo/bar/baz.c",
+                            "user": "foo",
+                            "body": "Test comment",
+                            "line_number": 10,
+                            "can_resolve": false
+                        }
+                    ],
+                    "diffs": [
+                        {
+                            "file": "bli/bla/blub.c",
+                            "diff": "index 4996d5c6e..fed0e8bbd 100644\n--- a/classes/sca-global.bbclass\n+++ b/classes/sca-global.bbclass\n@@ -131,7 +131,7 @@ SCA_AVAILABLE_MODULES ?= \"\\\n                           reconbf \\\n                           retire \\\n                           reuse \\\n-                          rubycritic \\\n+                          revive \\\n                           safety \\\n                           semgrep \\\n                           setuptoolslint \\",
+                            "newfile": false
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "projects": {
+        "1": {
+            "requests": {
+                "5": {
+                    "wip": true,
+                    "notes": [
+                    ],
+                    "diffs": [
+                        {
+                            "file": "fr_errors.po",
+                            "diff": "index 4996d5c6e..fed0e8bbd 100644\n--- a/fr_errors.po\n+++ b/fr_errors.po\n@@ -42,7 +42,7 @@ SCA_AVAILABLE_MODULES ?= \"\\\n                           reconbf \\\n                           retire \\\n                           reuse \\\n-                          foo \\\n+                          bar \\\n                           safety \\\n                           semgrep \\\n                           setuptoolslint \\",
+                            "newfile": false
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

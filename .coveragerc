@@ -1,0 +1,11 @@
+;SPDX-FileCopyrightText: 2021 Konrad Weihmann
+;SPDX-License-Identifier: GPL-3.0-only
+[report]
+exclude_lines =
+    pragma: no cover
+    @abstract
+    raise NotImplementedError
+[run]
+omit =
+    scabot/provider/github/*
+    scabot/provider/gitlab/*
