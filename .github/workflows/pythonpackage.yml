@@ -24,13 +24,22 @@ jobs:
         pip install --upgrade setuptools 
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
-    - name: build
-      run: python3 setup.py build
-    - name: install
-      run: python3 setup.py build
     - name: test (pytest)
       run: pytest
       shell: bash
     - name: test (reuse)
       run: reuse lint
+      shell: bash
+    - name: build
+      run: python3 setup.py build sdist
+    - name: install
+      run: python3 setup.py install --user
+    - name: test (installed)
+      run: |
+        scabot --help
+        scabot gitlab --help
+        scabot github --help
+        scabot mock --help
+        tar -tvf dist/scabot-*.tar.gz | grep LICENSE
+        tar -tvf dist/scabot-*.tar.gz | grep README.md
       shell: bash
