@@ -26,7 +26,7 @@ setuptools.setup(
     long_description_content_type='text/markdown',
     license_files=('LICENSE',),
     url='https://github.com/priv-kweihmann/scabot',
-    packages=['scabot'],
+    packages=setuptools.find_packages(exclude=('tests',)),
     entry_points={
         'console_scripts': [
             'scabot = scabot.__main__:main',
