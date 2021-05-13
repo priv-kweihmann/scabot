@@ -17,7 +17,7 @@ class TestClassRunargs(TestBaseClass):
     @pytest.mark.parametrize('requestnum', ('1', '10000', '20000000'))
     @pytest.mark.parametrize('inputfiles', [TestBaseClass.file_in_testdir('bad-po-1.0.dm')])
     @pytest.mark.parametrize('preargs', (
-                                            [], 
+                                            TestBaseClass.TEST_UNDEFINED_PARAMETER, 
                                             ["--bottoken=foo"], 
                                             ["--botuser=foo"], 
                                             ["--botuser=foo", "--bottoken=foo"],
@@ -26,43 +26,39 @@ class TestClassRunargs(TestBaseClass):
                                             ["--comment_indirect"]
                                             ))
     def test_runargs_good(self, provider, project, requestnum, inputfiles, preargs):
-        self._create_args(provider=provider, project=project, requestnum=requestnum, inputfiles=inputfiles, preargs=preargs)
+        self._create_args(provider=provider, project=project, requestnum=requestnum, inputfiles=inputfiles, 
+                          preargs=preargs if not isinstance(preargs, object) else [])
 
-    @pytest.mark.parametrize('provider', ('', 'foo'))
+    @pytest.mark.parametrize('provider', (TestBaseClass.TEST_UNDEFINED_PARAMETER, 'foo'))
     @pytest.mark.parametrize('project', '1')
     @pytest.mark.parametrize('requestnum', '1')
     @pytest.mark.parametrize('inputfiles', [TestBaseClass.file_in_testdir('bad-po-1.0.dm')])
-    @pytest.mark.parametrize('preargs', [])
-    def test_runargs_bad_provider(self, provider, project, requestnum, inputfiles, preargs):
+    def test_runargs_bad_provider(self, provider, project, requestnum, inputfiles):
         with pytest.raises(SystemExit):
-            self._create_args(provider=provider, project=project, requestnum=requestnum, inputfiles=inputfiles, preargs=preargs)
+            self._create_args(provider=provider, project=project, requestnum=requestnum, inputfiles=inputfiles)
 
     @pytest.mark.parametrize('provider', 'mock')
-    @pytest.mark.parametrize('project', '')
+    @pytest.mark.parametrize('project', TestBaseClass.TEST_UNDEFINED_PARAMETER)
     @pytest.mark.parametrize('requestnum', '1')
     @pytest.mark.parametrize('inputfiles', [TestBaseClass.file_in_testdir('bad-po-1.0.dm')])
-    @pytest.mark.parametrize('preargs', [])
-    def test_runargs_bad_project(self, provider, project, requestnum, inputfiles, preargs):
+    def test_runargs_bad_project(self, provider, project, requestnum, inputfiles):
         with pytest.raises(SystemExit):
-            self._create_args(provider=provider, project=project, requestnum=requestnum, inputfiles=inputfiles, preargs=preargs)
+            self._create_args(provider=provider, project=project, requestnum=requestnum, inputfiles=inputfiles)
 
     @pytest.mark.parametrize('provider', 'mock')
     @pytest.mark.parametrize('project', '1')
-    @pytest.mark.parametrize('requestnum', '')
+    @pytest.mark.parametrize('requestnum', TestBaseClass.TEST_UNDEFINED_PARAMETER)
     @pytest.mark.parametrize('inputfiles', [TestBaseClass.file_in_testdir('bad-po-1.0.dm')])
-    @pytest.mark.parametrize('preargs', [])
-    def test_runargs_bad_requestnum(self, provider, project, requestnum, inputfiles, preargs):
+    def test_runargs_bad_requestnum(self, provider, project, requestnum, inputfiles):
         with pytest.raises(SystemExit):
-            self._create_args(provider=provider, project=project, requestnum=requestnum, inputfiles=inputfiles, preargs=preargs)
+            self._create_args(provider=provider, project=project, requestnum=requestnum, inputfiles=inputfiles)
 
     @pytest.mark.parametrize('provider', 'mock')
     @pytest.mark.parametrize('project', '1')
     @pytest.mark.parametrize('requestnum', '1')
-    @pytest.mark.parametrize('inputfiles', [])
-    @pytest.mark.parametrize('preargs', [])
-    def test_runargs_bad_inputfiles(self, provider, project, requestnum, inputfiles, preargs):
+    def test_runargs_bad_inputfiles(self, provider, project, requestnum):
         with pytest.raises(SystemExit):
-            self._create_args(provider=provider, project=project, requestnum=requestnum, inputfiles=inputfiles, preargs=preargs)
+            self._create_args(provider=provider, project=project, requestnum=requestnum)
 
     @pytest.mark.parametrize('provider', 'mock')
     @pytest.mark.parametrize('project', '1')
