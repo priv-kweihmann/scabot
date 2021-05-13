@@ -19,6 +19,7 @@ jobs:
     - name: prepare
       run: |
         python3 -m pip install --upgrade pip
+        pip install --upgrade setuptools 
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
     - name: build
