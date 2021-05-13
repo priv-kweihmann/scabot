@@ -8,14 +8,25 @@ import sys
 class TestBaseClass():
 
     TESTFILES_DIR = os.path.abspath(os.path.dirname(__file__) + "/../testfiles")
+    TEST_UNDEFINED_PARAMETER = 'this is an undefined parameter to work around pytest limitations'
 
     @classmethod
     def setup_class(cls):
         sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + "/../"))
 
+    def __pytest_empty_object_fixture(self, _input, default):
+        if _input == TestBaseClass.TEST_UNDEFINED_PARAMETER:
+            return default
+        return _input
+
     def _create_args(self, provider="mock", server=TESTFILES_DIR, project="0", requestnum="0", inputfiles=[], preargs=[]):
-        return self._create_args_parser().parse_args(preargs + [provider, "--server={}".format(server), 
-            "--project={}".format(project), "--request={}".format(requestnum), *inputfiles])
+        return self._create_args_parser().parse_args(
+                    self.__pytest_empty_object_fixture(preargs, []) + [
+                            self.__pytest_empty_object_fixture(provider, ""), 
+                            "--server={}".format(self.__pytest_empty_object_fixture(server, "")), 
+                            "--project={}".format(self.__pytest_empty_object_fixture(project, "")), 
+                            "--request={}".format(self.__pytest_empty_object_fixture(requestnum, "")), 
+                            *inputfiles])
 
     def _create_args_parser(self):
         from scabot.runargs import create_parser
