@@ -14,7 +14,7 @@ with open('requirements.txt') as f:
 
 requirements_dev: List[str] = []
 with open('requirements.txt') as f:
-    requirements = f.read().splitlines()
+    requirements_dev = f.read().splitlines()
 
 setuptools.setup(
     name='scabot',
