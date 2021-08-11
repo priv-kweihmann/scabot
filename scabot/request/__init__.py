@@ -52,8 +52,12 @@ class Request():
         for item in self.ValidInputFiles:
             if item.File in __modified_lines and int(item.Line) in __modified_lines[item.File]:
                 __hits.add(item)
-            elif any(x in __modified_lines for x in item.BBFiles) and self.__comment_indirect:
-                __hits.add(item)
+            if self.__comment_indirect:
+                for k,v in {k:v for k,v in __modified_lines.items() if k in item.BBFiles}.items():
+                    item.Line = min(v)
+                    item.Message += ' ::: occured in file {}'.format(item.File)
+                    item.File = k
+                    __hits.add(item)
         return __hits
 
     def Process(self):
