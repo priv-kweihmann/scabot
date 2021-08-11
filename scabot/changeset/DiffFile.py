@@ -61,3 +61,15 @@ class DiffFile():
     @property
     def NewLines(self) -> List[int]:
         return self.__get_newly_added_content()
+
+class DiffFileCollection():
+
+    @staticmethod
+    def get_diffs(diff):
+        res = []
+        _patch = PatchSet(diff.decode('utf-8'))
+        for f in _patch.added_files:
+            res.append(DiffFile(f.path, str(f), newfile=True))
+        for f in _patch.modified_files:
+            res.append(DiffFile(f.path, str(f)))
+        return res

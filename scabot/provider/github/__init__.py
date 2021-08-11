@@ -20,7 +20,7 @@ class GitHubProvider(Provider):
         self.__repo = self.__get_connection()
         self.__pr = self.__get_pr()
 
-        self._changes.AddChange(self.__pr.diff())
+        self._changes.AddChangeFromCollection(self.__pr.diff())
 
         self.__isvalid = self.__pr.state == 'open'
         self.__isvalid &= not self.__is_draft() or self.AllowDrafts
@@ -33,7 +33,7 @@ class GitHubProvider(Provider):
         return self.__pr.draft
 
     def __get_github_repo(self):
-        return self.ServerURL.rstrip('/').split('/')[-1]
+        return self.__project
 
     def __get_connection(self):
         login = github3.login(self.Username, self.Token)
@@ -52,8 +52,11 @@ class GitHubProvider(Provider):
 
     def SetNote(self, value: Note):
         try:
+            _ref = value.reference
+            if not _ref:
+                _ref = self.__get_pr().head.sha
             self.__pr.create_review_comment(
-                value.body, value.reference.commit_id, value.path, value.lines[0])
+                value.body, _ref, value.path, value.lines[0])
         except Exception as e:
             raise SCABotServerCommError(e)
 

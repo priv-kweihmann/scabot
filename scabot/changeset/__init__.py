@@ -5,6 +5,7 @@ from collections import defaultdict
 from typing import List
 
 from scabot.changeset.DiffFile import DiffFile
+from scabot.changeset.DiffFile import DiffFileCollection
 
 
 class Changeset(object):
@@ -27,3 +28,6 @@ class Changeset(object):
 
     def AddChange(self, file, diff, newfile=False):
         self.__changes.append(DiffFile(file, diff, newfile))
+
+    def AddChangeFromCollection(self, diff):
+        self.__changes += DiffFileCollection.get_diffs(diff)
