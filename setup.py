@@ -1,8 +1,6 @@
 # SPDX-FileCopyrightText: 2021 Konrad Weihmann
 # SPDX-License-Identifier: GPL-3.0-only
 
-from typing import List
-
 import setuptools
 
 with open('README.md') as i:
@@ -11,10 +9,6 @@ with open('README.md') as i:
 requirements = []
 with open('requirements.txt') as f:
     requirements = f.read().splitlines()
-
-requirements_dev: List[str] = []
-with open('requirements-dev.txt') as f:
-    requirements_dev = f.read().splitlines()
 
 setuptools.setup(
     name='scabot',
@@ -33,9 +27,6 @@ setuptools.setup(
         ],
     },
     install_requires=requirements,
-    extras_require={
-        'dev': requirements_dev,
-    },
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',
