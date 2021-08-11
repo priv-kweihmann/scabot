@@ -14,11 +14,11 @@ from scabot.request import Request
 def __create_github_parser(subparser):
     _parser = subparser.add_parser('github')
     _parser.add_argument(
-        '--project', default=os.environ.get('SCABOT_PROJECT', ''), help='Project number')
+        '--project', default=os.environ.get('SCABOT_PROJECT', ''), help='Project name')
     _parser.add_argument(
         '--request', default=os.environ.get('SCABOT_REQUEST', ''), help='Request Number')
     _parser.add_argument(
-        '--server', default=os.environ.get('SCABOT_SERVER', ''), help='Path to mock server files')
+        '--server', default=os.environ.get('SCABOT_SERVER', ''), help='https://github.com/<profile-name>')
     _parser.add_argument('files', nargs='+',
                          help='Files containing SCA results')
 
@@ -30,7 +30,7 @@ def __create_gitlab_parser(subparser):
     _parser.add_argument(
         '--request', default=os.environ.get('SCABOT_REQUEST', ''), help='Request Number')
     _parser.add_argument(
-        '--server', default=os.environ.get('SCABOT_SERVER', ''), help='Path to mock server files')
+        '--server', default=os.environ.get('SCABOT_SERVER', ''), help='Url to your gitlab server')
     _parser.add_argument('files', nargs='+',
                          help='Files containing SCA results')
 
