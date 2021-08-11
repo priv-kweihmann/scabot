@@ -57,9 +57,9 @@ positional arguments:
 
 optional arguments:
   -h, --help         show this help message and exit
-  --project PROJECT  Project number
+  --project PROJECT  Project name
   --request REQUEST  Request Number
-  --server SERVER    Path to mock server files
+  --server SERVER    https://github.com/<profile-name>
 ```
 
 ### Use of environment variables
