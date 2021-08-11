@@ -53,9 +53,9 @@ class Request():
             if item.File in __modified_lines and int(item.Line) in __modified_lines[item.File]:
                 __hits.add(item)
             if self.__comment_indirect:
-                for k,v in {k:v for k,v in __modified_lines.items() if k in item.BBFiles}.items():
+                for k, v in {k: v for k, v in __modified_lines.items() if k in item.BBFiles}.items():
                     item.Line = min(v)
-                    item.Message += ' ::: occured in file {}'.format(item.File)
+                    item.Message += ' ::: occured in file {file}'.format(file=item.File)
                     item.File = k
                     __hits.add(item)
         return __hits

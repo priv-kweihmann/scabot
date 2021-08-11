@@ -12,7 +12,7 @@ class Changeset(object):
 
     def __init__(self, args):
         self.__changes = []
-        self.__affected_lines_only = args.comment_only_affected_lines
+        self.__affected_lines_only = args.comment_only_affected_lines if args else False
 
     @property
     def Changes(self) -> List[DiffFile]:
