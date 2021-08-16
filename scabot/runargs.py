@@ -67,6 +67,10 @@ def create_parser() -> argparse.ArgumentParser:
                         default=any(os.environ.get('SCABOT_COMMENT_INDIRECT', '')),
                         action='store_true',
                         help='Comment if any of the incoorporated BBFILES was changed')
+    parser.add_argument('--incomplete',
+                        default=False,
+                        action='store_true',
+                        help='Build was incomplete - no issues will be resolved, just new added')
 
     subparser = parser.add_subparsers(dest='mode')
     __create_github_parser(subparser)
@@ -77,12 +81,13 @@ def create_parser() -> argparse.ArgumentParser:
 
 
 def create_provider_instance(args) -> Provider:
-    if args.mode == 'mock':
-        return MockProvider(args, args.botuser, args.bottoken, args.server, args.project, args.request)
-    elif args.mode == 'github':
+    if args.mode == 'mock': # pragma: no cover
+        return MockProvider(args, args.botuser, args.bottoken,
+                            args.server, args.project, args.request)  # pragma: no cover
+    elif args.mode == 'github': # pragma: no cover
         return GitHubProvider(args, args.botuser, args.bottoken,
                               args.server, args.project, args.request) # pragma: no cover
-    elif args.mode == 'gitlab':
+    elif args.mode == 'gitlab': # pragma: no cover
         return GitLabProvider(args, args.botuser, args.bottoken,
                               args.server, args.project, args.request) # pragma: no cover
     raise NotImplementedError(
@@ -90,4 +95,4 @@ def create_provider_instance(args) -> Provider:
 
 
 def create_request_instance(args, provider) -> Request:
-    return Request(args, provider)
+    return Request(args, provider) # pragma: no cover

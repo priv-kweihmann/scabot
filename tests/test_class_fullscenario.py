@@ -195,3 +195,21 @@ class TestClassFullScenarios(TestBaseClass):
         _notes = _result['projects'][kwargs['project']]['requests'][kwargs['requestnum']]['notes']
 
         assert(not any(_notes))
+
+    @pytest.mark.parametrize('kwargs', [{
+        "provider": "mock",
+        "project": "1", 
+        "requestnum": "6", 
+        "inputfiles": [TestBaseClass.file_in_testdir('bad-po-1.0.dm')],
+        "preargs": ["--incomplete", "--comment_indirect"]
+    }])
+    def test_request_process_incomplete(self, kwargs):
+        from scabot.notes import Note
+
+        _args = self._create_args(**kwargs)
+        _provider = self._create_provider(_args)
+        _request_one = self._create_request(_args, _provider)
+
+        assert(any(_request_one.SCAFindings))
+        assert(any(_request_one.NewNotes))
+        assert(not any(_request_one.ResolveableNotes))

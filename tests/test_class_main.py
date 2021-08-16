@@ -15,4 +15,4 @@ class TestClassMain(TestBaseClass):
     def test_import_main(self):
         import scabot.__main__
         with pytest.raises((SystemExit, NotImplementedError)):
-            scabot.__main__.main() 
+            scabot.__main__.main()

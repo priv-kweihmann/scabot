@@ -17,6 +17,7 @@ class Request():
         self.__provider = provider
 
         self.__comment_indirect = args.comment_indirect
+        self.__comment_resolve = not args.incomplete
 
         self.__input_objects = []
 
@@ -44,7 +45,9 @@ class Request():
     @property
     def ResolveableNotes(self) -> Set[Note]:
         return {x for x in self.__existing_notes
-                if x not in self.__new_noteset and x.user == self.__provider.Username}
+                if x not in self.__new_noteset and # noqa: W504
+                x.user == self.__provider.Username and # noqa: W504
+                self.__comment_resolve}
 
     def __get_matching_objects(self) -> Set[SCAInput]:
         __modified_lines = self.__provider.GetChanges().ChangedContent

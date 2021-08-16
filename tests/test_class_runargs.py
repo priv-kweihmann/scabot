@@ -23,7 +23,8 @@ class TestClassRunargs(TestBaseClass):
                                             ["--botuser=foo", "--bottoken=foo"],
                                             ["--comment_only_affected_lines"],
                                             ["--comment_drafts"],
-                                            ["--comment_indirect"]
+                                            ["--comment_indirect"],
+                                            ["--incomplete"]
                                             ))
     def test_runargs_good(self, provider, project, requestnum, inputfiles, preargs):
         self._create_args(provider=provider, project=project, requestnum=requestnum, inputfiles=inputfiles, 

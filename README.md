@@ -15,7 +15,8 @@ using fidings from [meta-sca](https://github.com/priv-kweihmann/meta-sca)
 ## Usage
 
 ```shell
-usage: scabot [-h] [--botuser BOTUSER] [--bottoken BOTTOKEN] [--comment_only_affected_lines] [--comment_drafts] [--comment_indirect] {github,gitlab,mock} ...
+usage: scabot [-h] [--botuser BOTUSER] [--bottoken BOTTOKEN] [--comment_only_affected_lines] [--comment_drafts] [--comment_indirect] [--incomplete]
+              {github,gitlab,mock} ...
 
 gitlab/hub auto commenter
 
@@ -30,6 +31,7 @@ optional arguments:
                         Comment only on changed lines (default: False)
   --comment_drafts      Comment on draft/WIP requests (default: False)
   --comment_indirect    Comment if any of the incoorporated BBFILES was changed (default: False)
+  --incomplete          Build was incomplete - no issues will be resolved, just new added (default: False)
 ```
 
 options for gitlab
