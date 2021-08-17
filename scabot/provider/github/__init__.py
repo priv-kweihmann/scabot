@@ -2,6 +2,9 @@
 # SPDX-License-Identifier: GPL-3.0-only
 
 import github3
+from tenacity import retry
+from tenacity.stop import stop_after_attempt
+from tenacity.wait import wait_exponential
 
 from scabot.notes import Note
 from scabot.provider import Provider
@@ -35,6 +38,7 @@ class GitHubProvider(Provider):
     def __get_github_repo(self):
         return self.__project
 
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), stop=stop_after_attempt(5))
     def __get_connection(self):
         login = github3.login(self.Username, self.Token)
         if not login:
@@ -44,12 +48,14 @@ class GitHubProvider(Provider):
             raise SCABotProjectNotFoundError(self.__get_github_repo())
         return res
 
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), stop=stop_after_attempt(5))
     def __get_pr(self):
         res = self.__repo.pull_request(self.__mrnum)
         if not res:
             raise SCABotRequestNotFoundError(self.__mrnum)
         return res
 
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), stop=stop_after_attempt(5))
     def SetNote(self, value: Note):
         try:
             _ref = value.reference
@@ -70,9 +76,11 @@ class GitHubProvider(Provider):
             reference=input,
         )
 
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), stop=stop_after_attempt(5))
     def GetNotes(self):
         return [self.GetNote(x) for x in self.__pr.review_comments()]
 
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), stop=stop_after_attempt(5))
     def ResolveNote(self, value: Note):
         for c in self.__pr.review_comments():
             if c.id == value.reference.id:
@@ -82,5 +90,6 @@ class GitHubProvider(Provider):
                 c.delete()
                 break
 
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), stop=stop_after_attempt(5))
     def GetCurrentStatus(self) -> dict:
         return self.__pr.__dict__id

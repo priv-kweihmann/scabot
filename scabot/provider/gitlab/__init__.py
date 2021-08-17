@@ -3,14 +3,17 @@
 
 import logging
 
+import gitlab
 import requests
+from tenacity import retry
+from tenacity.stop import stop_after_attempt
+from tenacity.wait import wait_exponential
 
 from scabot.notes import Note
 from scabot.provider import Provider
 from scabot.provider import SCABotProjectNotFoundError
 from scabot.provider import SCABotRequestNotFoundError
 from scabot.provider import SCABotServerCommError
-import gitlab
 
 
 class GitLabProvider(Provider):
@@ -41,6 +44,7 @@ class GitLabProvider(Provider):
     def __is_draft(self):
         return self.__mr.work_in_progress
 
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), stop=stop_after_attempt(5))
     def __get_server_connection(self):
         try:
             return gitlab.Gitlab(self.ServerURL, private_token=self.Token, session=self.__session)
@@ -48,6 +52,7 @@ class GitLabProvider(Provider):
             logging.error('GitLab connections failed')
             raise SCABotServerCommError(e)
 
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), stop=stop_after_attempt(5))
     def __get_project(self):
         try:
             return self.__get_server_connection().projects.get(self.__project)
@@ -55,6 +60,7 @@ class GitLabProvider(Provider):
             logging.error('Project not found')
             raise SCABotProjectNotFoundError(self.__project)
 
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), stop=stop_after_attempt(5))
     def __get_mergerequest(self, proj):
         try:
             return proj.mergerequests.get(self.__mrnum)
@@ -62,6 +68,7 @@ class GitLabProvider(Provider):
             logging.error('MR not found')
             raise SCABotRequestNotFoundError(self.__mrnum)
 
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), stop=stop_after_attempt(5))
     def SetNote(self, value: Note):
         _obj = {
             'body': value.body,
@@ -99,6 +106,7 @@ class GitLabProvider(Provider):
             input,
         )
 
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), stop=stop_after_attempt(5))
     def GetNotes(self):
         mr = self.__mr
         res = []
@@ -107,10 +115,12 @@ class GitLabProvider(Provider):
                 res.append(self.GetNote(note))
         return res
 
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), stop=stop_after_attempt(5))
     def ResolveNote(self, value: Note):
         note = self.__mr.discussions.get(value.reference.get('id'))
         note.resolve = True
         note.save()
 
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), stop=stop_after_attempt(5))
     def GetCurrentStatus(self) -> dict:
         return self.__mr
