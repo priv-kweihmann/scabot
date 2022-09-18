@@ -66,7 +66,7 @@ def create_parser() -> argparse.ArgumentParser:
     parser.add_argument('--comment_indirect',
                         default=any(os.environ.get('SCABOT_COMMENT_INDIRECT', '')),
                         action='store_true',
-                        help='Comment if any of the incoorporated BBFILES was changed')
+                        help='Comment if any of the incorporated BBFILES was changed')
     parser.add_argument('--incomplete',
                         default=False,
                         action='store_true',

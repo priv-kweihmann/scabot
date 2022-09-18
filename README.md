@@ -30,7 +30,7 @@ optional arguments:
   --comment_only_affected_lines
                         Comment only on changed lines (default: False)
   --comment_drafts      Comment on draft/WIP requests (default: False)
-  --comment_indirect    Comment if any of the incoorporated BBFILES was changed (default: False)
+  --comment_indirect    Comment if any of the incorporated BBFILES was changed (default: False)
   --incomplete          Build was incomplete - no issues will be resolved, just new added (default: False)
 ```
 
@@ -66,7 +66,7 @@ optional arguments:
 
 ### Use of environment variables
 
-several options can be defined via environment variable, which is the preferred way to specify confidental information (like the access token)
+several options can be defined via environment variable, which is the preferred way to specify confidential information (like the access token)
 
 | option                        | environment var               | comments                                 |
 | ----------------------------- | ----------------------------- | ---------------------------------------- |
