@@ -1,0 +1,15 @@
+# Dependabot Configuration File
+# For details see https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+# SPDX-FileCopyrightText: 2022 Konrad Weihmann
+# SPDX-License-Identifier: GPL-3.0-only
+
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
