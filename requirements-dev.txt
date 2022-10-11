@@ -17,4 +17,4 @@ pytest-tldr == 0.2.4
 python-debian==0.1.44
 reuse == 1.0.0
 twine == 4.0.1
-wemake-python-styleguide == 0.16.1
+wemake-python-styleguide == 0.17.0
