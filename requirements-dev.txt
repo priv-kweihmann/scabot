@@ -14,7 +14,7 @@ pytest-random-order == 1.0.4
 pytest-socket == 0.5.1
 pytest-sugar == 0.9.5
 pytest-tldr == 0.2.4
-python-debian==0.1.44
+python-debian==0.1.48
 reuse == 1.0.0
 twine == 4.0.1
 wemake-python-styleguide == 0.17.0
