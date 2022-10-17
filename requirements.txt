@@ -1,5 +1,5 @@
 github3.py == 3.2.0
-python-gitlab == 3.9.0
+python-gitlab == 3.10.0
 tenacity == 8.1.0
 unidiff == 0.7.4
 wheel == 0.37.1
