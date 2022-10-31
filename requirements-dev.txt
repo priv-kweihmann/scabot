@@ -13,7 +13,7 @@ pytest-mypy == 0.10.0
 pytest-random-order == 1.0.4
 pytest-socket == 0.5.1
 pytest-sugar == 0.9.5
-pytest-tldr == 0.2.4
+pytest-tldr == 0.2.5
 python-debian==0.1.48
 reuse == 1.0.0
 twine == 4.0.1
