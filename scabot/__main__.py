@@ -13,7 +13,7 @@ def main():
     _prodiver = create_provider_instance(_args)
     logging.info(_prodiver)  # pragma: no cover
     _request = create_request_instance(_args, _prodiver)  # pragma: no cover
-    logging.info('New Notes -> {notes}'.format(notes=_request.NewNotes))  # pragma: no cover
+    logging.info(f'New Notes -> {_request.NewNotes}') # noqa: G004 # pragma: no cover
     _request.Process()  # pragma: no cover
 
 

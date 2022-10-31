@@ -72,10 +72,10 @@ class MockProvider(Provider):
         self.__db['projects'][self.__projectnumber]['requests'][self.__requestnumber]['notes'].append(
             _obj)
 
-    def GetNote(self, input: dict):
-        return Note(input.get('user', ''), input.get('body', ''), input.get('path', ''), input.get(
-            'line_number', 0), input.get('old_linenumber', None), input.get('resolved', False),
-            input.get('can_resolve', True), reference=input)
+    def GetNote(self, input_: dict):
+        return Note(input_.get('user', ''), input_.get('body', ''), input_.get('path', ''), input_.get(
+            'line_number', 0), input_.get('old_linenumber', None), input_.get('resolved', False),
+            input_.get('can_resolve', True), reference=input_)
 
     def GetNotes(self):
         return [self.GetNote(x) for x in self.__get_notes()]

@@ -26,8 +26,8 @@ class Changeset(object):
                 c.AffectedLines if self.__affected_lines_only else range(1, 100000))
         return _res
 
-    def AddChange(self, file, diff, newfile=False):
-        self.__changes.append(DiffFile(file, diff, newfile))
+    def AddChange(self, file_, diff, newfile=False):
+        self.__changes.append(DiffFile(file_, diff, newfile))
 
     def AddChangeFromCollection(self, diff):
         self.__changes += DiffFileCollection.get_diffs(diff)

@@ -92,18 +92,18 @@ class GitLabProvider(Provider):
                 del _obj['position']['old_line']
                 self.__mr.discussions.create(_obj)
             except Exception:
-                logging.error('Set note {note} failed'.format(note=value))
+                logging.error(f'Set note {value} failed')  # noqa: G004
 
-    def GetNote(self, input):
+    def GetNote(self, input_):
         return Note(
-            input.get('author', {}).get('username', 'Unkwown user'),
-            input.get('body', ''),
-            input.get('position', {}).get('new_path', ''),
-            input.get('position', {}).get('new_line', -1),
-            input.get('position', {}).get('old_line', None),
-            input.get('resolved', False),
-            input.get('resolvable', True),
-            input,
+            input_.get('author', {}).get('username', 'Unkwown user'),
+            input_.get('body', ''),
+            input_.get('position', {}).get('new_path', ''),
+            input_.get('position', {}).get('new_line', -1),
+            input_.get('position', {}).get('old_line', None),
+            input_.get('resolved', False),
+            input_.get('resolvable', True),
+            input_,
         )
 
     @retry(wait=wait_exponential(multiplier=1, min=10, max=120), stop=stop_after_attempt(5))

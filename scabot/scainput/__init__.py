@@ -21,9 +21,9 @@ class SCAInput():
         self.__Tool = ''
         self.__Scope = ''
         self.__bbfiles = []
-        for k, v in kwargs.items(): # pragma: no cover
+        for k, v in kwargs.items():  # pragma: no cover
             x = getattr(self, k)
-            if x is not None: # pragma: no cover
+            if x is not None:  # pragma: no cover
                 setattr(self, k, v)
 
     @property
@@ -161,13 +161,13 @@ class SCAInput():
         return hash(self.__repr__())
 
     @staticmethod
-    def FromFile(file: str) -> List:
+    def FromFile(file_: str) -> List:
         res = []
         try:
-            with open(file) as j:
+            with open(file_) as j:
                 res = [SCAInput(**i) for i in json.load(j)]
         except FileNotFoundError:
-            logging.error('{file} not found'.format(file=file))
+            logging.error(f'{file_} not found')  # noqa: G004
         except Exception as e:
             logging.exception(e)
         return res
