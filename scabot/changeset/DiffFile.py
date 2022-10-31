@@ -9,9 +9,9 @@ from unidiff import UnidiffParseError
 
 class DiffFile():
 
-    def __init__(self, file, diff, newfile=False):
+    def __init__(self, file_, diff, newfile=False):
         self.__diff = diff
-        self.__file = file
+        self.__file = file_
         self.__newfile = newfile
         self.__affectedlines = self.__get_modified_lines()
 
@@ -29,7 +29,7 @@ class DiffFile():
     def __get_modified_lines(self):
         res = []
         for _f in self.__get_patch():
-            for h in [x for x in _f]:
+            for h in _f:
                 res += h.target_lines()
         res = [x.target_line_no for x in res if not x.is_context]
         return res
@@ -37,7 +37,7 @@ class DiffFile():
     def __get_newly_added_content(self):
         res = []
         for _f in self.__get_patch():
-            for h in [x for x in _f]:
+            for h in _f:
                 res += h.target_lines()
         res = [(x.target_line_no, x.value) for x in res if x.is_added]
         return res

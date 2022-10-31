@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2021 Konrad Weihmann
 # SPDX-License-Identifier: GPL-3.0-only
 
-import github3
+import github3  # noqa: I900 false positive
 from tenacity import retry
 from tenacity.stop import stop_after_attempt
 from tenacity.wait import wait_exponential
@@ -66,14 +66,14 @@ class GitHubProvider(Provider):
         except Exception as e:
             raise SCABotServerCommError(e)
 
-    def GetNote(self, input):
+    def GetNote(self, input_):
         return Note(
-            input.user.login,
-            input.body_text,
-            input.path,
-            input.position,
-            input.original_position,
-            reference=input,
+            input_.user.login,
+            input_.body_text,
+            input_.path,
+            input_.position,
+            input_.original_position,
+            reference=input_,
         )
 
     @retry(wait=wait_exponential(multiplier=1, min=10, max=120), stop=stop_after_attempt(5))

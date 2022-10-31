@@ -47,15 +47,15 @@ class Provider(abc.ABC, metaclass=abc.ABCMeta):
         raise NotImplementedError()
 
     @abc.abstractmethod
-    def GetNote(self, input) -> Note:
+    def GetNote(self, input_) -> Note:
         raise NotImplementedError()
 
     @abc.abstractmethod
     def SetNote(self, value: Note):
         raise NotImplementedError()
 
-    def CreateNote(self, input: SCAInput) -> Note:
-        return Note(self.Username, input.GetFormattedMessage(), input.File, int(input.Line))
+    def CreateNote(self, input_: SCAInput) -> Note:
+        return Note(self.Username, input_.GetFormattedMessage(), input_.File, int(input_.Line))
 
     @abc.abstractmethod
     def ResolveNote(self, value: Note):
