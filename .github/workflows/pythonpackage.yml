@@ -2,15 +2,20 @@
 # SPDX-License-Identifier: GPL-3.0-only
 name: Python package
 
-on: [push]
+on: 
+  push:
+    branches:
+      - "master"
+  pull_request:
+    
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 4
+      max-parallel: 5
       matrix:
-        python-version: ['3.7', '3.8', '3.9', '3.10']
+        python-version:  ['3.7', '3.8', '3.9', '3.10', '3.11']
 
     steps:
     - uses: actions/checkout@v3
@@ -24,6 +29,9 @@ jobs:
         pip install --upgrade setuptools 
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
+    - name: lint (flake8)
+      run: flake8
+      shell: bash
     - name: test (pytest)
       run: pytest
       shell: bash
