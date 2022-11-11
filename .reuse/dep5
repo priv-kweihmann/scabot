@@ -14,3 +14,11 @@ License: GPL-3.0-only
 Files: requirement*.txt
 Copyright: 2021 Konrad Weihmann <kweihmann@outlook.com>
 License: GPL-3.0-only
+
+Files: .github/workflows/autorelease.yml
+Copyright: 2022 Konrad Weihmann <kweihmann@outlook.com>
+License: GPL-3.0-only
+
+Files: .bumpversion.cfg
+Copyright: 2022 Konrad Weihmann <kweihmann@outlook.com>
+License: GPL-3.0-only
