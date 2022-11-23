@@ -33,5 +33,5 @@ pytest-random-order == 1.0.4
 pytest-socket == 0.5.1
 pytest-sugar == 0.9.6
 pytest-tldr == 0.2.5
-python-debian==0.1.48
+python-debian==0.1.49
 reuse == 1.0.0
