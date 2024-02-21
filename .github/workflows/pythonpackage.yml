@@ -33,7 +33,12 @@ jobs:
       run: flake8
       shell: bash
     - name: test (pytest)
-      run: pytest
+      run: |
+        if [ "${{ matrix.python-version }}" = "3.12" ]; then
+          echo "Using experimental sysmon"
+          export COVERAGE_CORE=sysmon
+        fi
+        pytest
       shell: bash
     - name: test (reuse)
       run: reuse lint
