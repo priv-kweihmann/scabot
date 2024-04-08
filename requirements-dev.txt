@@ -33,4 +33,4 @@ pytest-socket == 0.7.0
 pytest-sugar == 1.0.0
 pytest-tldr == 0.2.5
 python-debian==0.1.49
-reuse == 3.0.1
+reuse == 3.0.2
