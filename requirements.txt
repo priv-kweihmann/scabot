@@ -1,6 +1,6 @@
 github3.py ~= 4.0
 python-gitlab ~= 4.5
-requests ~= 2.31
+requests ~= 2.32
 tenacity ~= 8.3
 unidiff ~= 0.7
 wheel ~= 0.43
