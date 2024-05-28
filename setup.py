@@ -12,7 +12,7 @@ with open('requirements.txt') as f:
 
 setuptools.setup(
     name='scabot',
-    version='1.5.7',
+    version='1.5.8',
     author='Konrad Weihmann',
     author_email='kweihmann@outlook.com',
     description='SCA automation bot',
