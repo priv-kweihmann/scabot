@@ -3,4 +3,4 @@ python-gitlab ~= 5.0
 requests ~= 2.32
 tenacity ~= 9.0
 unidiff ~= 0.7
-wheel ~= 0.44
+wheel ~= 0.45
