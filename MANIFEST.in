@@ -1,0 +1,4 @@
+# SPDX-FileCopyrightText: 2025 Konrad Weihmann
+# SPDX-License-Identifier: GPL-3.0-only
+prune docs
+prune tests

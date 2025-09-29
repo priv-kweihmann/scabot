@@ -1,0 +1,23 @@
+version = 1
+SPDX-PackageName = "scabot"
+SPDX-PackageSupplier = "Konrad Weihmann <kweihmann@outlook.com>"
+SPDX-PackageDownloadLocation = "https://github.com/priv-kweihmann/scabot"
+
+[[annotations]]
+path = "testfiles/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2021 Konrad Weihmann <kweihmann@outlook.com>"
+SPDX-License-Identifier = "GPL-3.0-only"
+
+[[annotations]]
+path = "requirement**.txt"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2021 Konrad Weihmann <kweihmann@outlook.com>"
+SPDX-License-Identifier = "GPL-3.0-only"
+
+[[annotations]]
+path = ".github/workflows/autorelease.yml"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 Konrad Weihmann <kweihmann@outlook.com>"
+SPDX-License-Identifier = "GPL-3.0-only"
+
