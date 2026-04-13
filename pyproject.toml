@@ -6,7 +6,7 @@ requires = ["setuptools >= 82.0.1"]
 build-backend = "setuptools.build_meta"
 
 [tool.bumpversion]
-current_version = "1.8.2"
+current_version = "1.8.3"
 tag = false
 commit = false
 
@@ -51,7 +51,7 @@ statistics = false
 [project]
 name = "scabot"
 requires-python = ">= 3.10"
-version = "1.8.2"
+version = "1.8.3"
 description = "Licensing check for different backends"
 readme = "README.md"
 maintainers = [
